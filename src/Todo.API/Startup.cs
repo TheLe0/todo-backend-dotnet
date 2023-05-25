@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Todo.Configuration;
+using Todo.Application;
 
 [assembly: FunctionsStartup(typeof(Todo.API.Startup))]
 namespace Todo.API;
@@ -13,10 +14,7 @@ public class Startup : FunctionsStartup
 {
     public override void Configure(IFunctionsHostBuilder builder)
     {
-        var databaseType = (DatabaseType) int.Parse(System.Environment.GetEnvironmentVariable("DATABASE_TYPE"));
-
-        builder.Services.AddSingleton<IDatabaseConfiguration>(X =>
-            new DatabaseConfiguration(databaseType)
-        );
+        builder.Services.AddConfiguration();
+        builder.Services.AddApplication();
     }
 }
