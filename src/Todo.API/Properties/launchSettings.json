@@ -1,0 +1,9 @@
+﻿{
+  "profiles": {
+    "Todo.API": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7107",
+      "launchBrowser": false
+    }
+  }
+}
