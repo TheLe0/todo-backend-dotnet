@@ -1,0 +1,12 @@
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/bin/Debug/net6.0/Todo.Configuration.deps.json
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/bin/Debug/net6.0/Todo.Configuration.dll
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/bin/Debug/net6.0/Todo.Configuration.pdb
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/obj/Debug/net6.0/Todo.Configuration.csproj.AssemblyReference.cache
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/obj/Debug/net6.0/Todo.Configuration.GeneratedMSBuildEditorConfig.editorconfig
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/obj/Debug/net6.0/Todo.Configuration.AssemblyInfoInputs.cache
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/obj/Debug/net6.0/Todo.Configuration.AssemblyInfo.cs
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/obj/Debug/net6.0/Todo.Configuration.csproj.CoreCompileInputs.cache
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/obj/Debug/net6.0/Todo.Configuration.dll
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/obj/Debug/net6.0/refint/Todo.Configuration.dll
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/obj/Debug/net6.0/Todo.Configuration.pdb
+/Users/leonardob.tosin/Documents/repos/TheLe0/todo-dotnet-backend/src/Todo.Configuration/obj/Debug/net6.0/ref/Todo.Configuration.dll
