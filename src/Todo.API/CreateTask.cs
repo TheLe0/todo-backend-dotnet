@@ -7,13 +7,22 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Todo.Configuration;
+using Todo.Application.Services;
 
 namespace Todo.API
 {
-    public static class CreateTask
+    public class CreateTask
     {
+        private readonly ITaskService _taskService;
+
+        public CreateTask(ITaskService taskService)
+        {
+            _taskService = taskService;
+        }
+
         [FunctionName("CreateTask")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(
                 AuthorizationLevel.Anonymous,
                 "post",
@@ -29,11 +38,10 @@ namespace Todo.API
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
 
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+            var task = await _taskService.CreateTask(name)
+                .ConfigureAwait(false);
 
-            return new OkObjectResult(responseMessage);
+            return new OkObjectResult(task);
         }
     }
 }
