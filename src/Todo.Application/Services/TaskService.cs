@@ -27,6 +27,11 @@ public class TaskService : ITaskService
         return await _taskRepository.DeleteById(id);
     }
 
+	public async Task<TaskModel> CloseById(string id)
+	{
+        return await _taskRepository.CloseById(id);
+    }
+
     public async Task<TaskModel> CreateTask(string name)
 	{
 		return await _taskRepository.CreateTask(name);

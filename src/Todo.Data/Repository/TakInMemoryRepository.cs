@@ -17,7 +17,6 @@ public class TakInMemoryRepository : ITaskRepository
         return Task.Run(() => FindTask(id));
     }
 
-
     public Task<IEnumerable<TaskModel>> GetAll()
     {
 		return Task.Run(() => AllTasks());
@@ -33,6 +32,11 @@ public class TakInMemoryRepository : ITaskRepository
     public Task<bool> DeleteById(string id)
     {
         return Task.Run(() => DeleteTask(id));
+    }
+
+    public Task<TaskModel> CloseById(string id)
+    {
+        return Task.Run(() => CloseTask(id));
     }
 
     private IEnumerable<TaskModel> AllTasks()
@@ -58,6 +62,15 @@ public class TakInMemoryRepository : ITaskRepository
         _tasks.Add(task);
 
 		return task;
+    }
+
+    private TaskModel CloseTask(string id)
+    {
+        var task = _tasks.FirstOrDefault(p => p.Id == id);
+
+        task?.Close();
+
+        return task;
     }
 }
 

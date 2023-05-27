@@ -8,6 +8,7 @@ namespace Todo.Data.Repository
         Task<IEnumerable<TaskModel>> GetAll();
         Task<TaskModel> FindById(string id);
         Task<bool> DeleteById(string id);
+        Task<TaskModel> CloseById(string id);
     }
 }
 

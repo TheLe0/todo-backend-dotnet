@@ -1,40 +1,37 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Todo.Configuration;
+using Todo.Application.Services;
 
 namespace Todo.API
 {
     public class CloseTask
     {
-        private readonly IDatabaseConfiguration _config;
+        private readonly ITaskService _taskService;
 
-        public CloseTask(IDatabaseConfiguration configuration)
+        public CloseTask(ITaskService taskService)
         {
-            _config = configuration;
+            _taskService = taskService;
         }
 
         [FunctionName("CloseTask")]
-        public IActionResult Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(
                 AuthorizationLevel.Anonymous,
                 "put",
                 Route = "tasks/{id}/closeCloseTask"
-            )] HttpRequest req, int id,
+            )] HttpRequest req, string id,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            string responseMessage = $"The id informed was: {id}. " +
-                $"and the persistance mode is: {_config.GetDatabaseType()}";
+            var task = await _taskService.CloseById(id)
+                .ConfigureAwait(false);
 
-            return new OkObjectResult(responseMessage);
+            return new OkObjectResult(task);
         }
     }
 }
