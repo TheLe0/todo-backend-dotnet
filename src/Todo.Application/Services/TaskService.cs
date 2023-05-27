@@ -13,6 +13,11 @@ public class TaskService : ITaskService
 		_taskRepository = taskRepository;
 	}
 
+    public async Task<IEnumerable<TaskModel>> GetAll()
+	{
+		return await _taskRepository.GetAll();
+	}
+
     public async Task<TaskModel> CreateTask(string name)
 	{
 		return await _taskRepository.CreateTask(name);

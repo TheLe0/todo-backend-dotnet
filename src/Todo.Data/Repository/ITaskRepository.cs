@@ -6,7 +6,7 @@ namespace Todo.Data.Repository
 	public interface ITaskRepository
 	{
         Task<TaskModel> CreateTask(string name);
-
+        Task<IEnumerable<TaskModel>> GetAll();
     }
 }
 
