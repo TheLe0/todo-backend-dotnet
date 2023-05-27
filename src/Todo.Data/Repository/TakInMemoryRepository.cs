@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Immutable;
-using System.Xml.Linq;
+﻿using System.Collections.Immutable;
 using Todo.Domain;
 
 namespace Todo.Data.Repository;
 
 public class TakInMemoryRepository : ITaskRepository
 {
-	private readonly IList<TaskModel> _tasks;
+	private readonly List<TaskModel> _tasks;
 
 	public TakInMemoryRepository()
 	{
@@ -32,7 +30,12 @@ public class TakInMemoryRepository : ITaskRepository
 		return Task.Run(() => AddTask(name));
     }
 
-	private IEnumerable<TaskModel> AllTasks()
+    public Task<bool> DeleteById(string id)
+    {
+        return Task.Run(() => DeleteTask(id));
+    }
+
+    private IEnumerable<TaskModel> AllTasks()
 	{
 		return _tasks.ToImmutableList();
 	}
@@ -40,6 +43,12 @@ public class TakInMemoryRepository : ITaskRepository
     private TaskModel FindTask(string searchId)
     {
         return _tasks.FirstOrDefault(p => p.Id == searchId);
+    }
+
+    private bool DeleteTask(string deleteId)
+    {
+        return 
+            _tasks.RemoveAll(p => p.Id == deleteId) > 0;
     }
 
     private TaskModel AddTask(string name)

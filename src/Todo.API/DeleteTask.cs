@@ -1,19 +1,24 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using Todo.Application.Services;
 
 namespace Todo.API
 {
-    public static class DeleteTask
+    public class DeleteTask
     {
+        private readonly ITaskService _taskService;
+
+        public DeleteTask(ITaskService taskService)
+        {
+            _taskService = taskService;
+        }
+
         [FunctionName("DeleteTask")]
-        public static IActionResult Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(
                 AuthorizationLevel.Anonymous,
                 "delete",
@@ -23,9 +28,12 @@ namespace Todo.API
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            string responseMessage = $"The id informed was: {id}.";
+            var taskIsDeleted = await _taskService.DeleteById(id)
+                .ConfigureAwait(false);    
 
-            return new OkObjectResult(responseMessage);
+            return taskIsDeleted ?
+                new OkObjectResult("The task was successfully deleted") :
+                new BadRequestObjectResult("No task found with the informed Id");
         }
     }
 }
