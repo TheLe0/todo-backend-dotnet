@@ -18,6 +18,11 @@ public class TaskService : ITaskService
 		return await _taskRepository.GetAll();
 	}
 
+    public async Task<TaskModel> FindById(string id)
+    {
+        return await _taskRepository.FindById(id);
+    }
+
     public async Task<TaskModel> CreateTask(string name)
 	{
 		return await _taskRepository.CreateTask(name);

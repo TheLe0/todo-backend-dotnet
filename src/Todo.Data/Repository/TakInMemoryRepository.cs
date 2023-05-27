@@ -14,7 +14,13 @@ public class TakInMemoryRepository : ITaskRepository
 		_tasks = new List<TaskModel>();
 	}
 
-	public Task<IEnumerable<TaskModel>> GetAll()
+    public Task<TaskModel> FindById(string id)
+	{
+        return Task.Run(() => FindTask(id));
+    }
+
+
+    public Task<IEnumerable<TaskModel>> GetAll()
     {
 		return Task.Run(() => AllTasks());
     }
@@ -31,7 +37,12 @@ public class TakInMemoryRepository : ITaskRepository
 		return _tasks.ToImmutableList();
 	}
 
-	private TaskModel AddTask(string name)
+    private TaskModel FindTask(string searchId)
+    {
+        return _tasks.FirstOrDefault(p => p.Id == searchId);
+    }
+
+    private TaskModel AddTask(string name)
 	{
         var task = new TaskModel(name);
 
