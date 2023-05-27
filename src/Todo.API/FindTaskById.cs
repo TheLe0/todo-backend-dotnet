@@ -15,10 +15,10 @@ namespace Todo.API
         [FunctionName("FindTaskById")]
         public static IActionResult Run(
             [HttpTrigger(
-                AuthorizationLevel.Function,
+                AuthorizationLevel.Anonymous,
                 "get",
                 Route = "tasks/{id}"
-            )] HttpRequest req, int id,
+            )] HttpRequest req, string id,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");

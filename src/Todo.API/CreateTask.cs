@@ -15,7 +15,7 @@ namespace Todo.API
         [FunctionName("CreateTask")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(
-                AuthorizationLevel.Function,
+                AuthorizationLevel.Anonymous,
                 "post",
                 Route = "tasks"
             )] HttpRequest req,

@@ -18,7 +18,7 @@ namespace Todo.API
                 AuthorizationLevel.Anonymous,
                 "delete",
                 Route = "tasks/{id}"
-            )] HttpRequest req, int id,
+            )] HttpRequest req, string id,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
