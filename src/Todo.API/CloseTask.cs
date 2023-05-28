@@ -22,7 +22,7 @@ namespace Todo.API
             [HttpTrigger(
                 AuthorizationLevel.Anonymous,
                 "put",
-                Route = "tasks/{id}/closeCloseTask"
+                Route = "tasks/{id}/close"
             )] HttpRequest req, string id,
             ILogger log)
         {
