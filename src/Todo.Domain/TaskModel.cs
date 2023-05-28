@@ -1,16 +1,18 @@
 ﻿namespace Todo.Domain;
 
-public class TaskModel
+public class TaskModel : BaseModel
 {
-    public string Id { get; private set; }
-    public string Name { get; private set; }
-    public bool IsClosed { get; private set; }
+    public string Name { get; set; }
+    public bool IsClosed { get; set; }
 
-    public TaskModel(string name)
+    public TaskModel() : base() {  }
+
+    public TaskModel(string name) :base()
     {
         Name = name;
-        Id = Guid.NewGuid().ToString();
         IsClosed = false;
+
+        GenerateId();
     }
 
     public void Close()

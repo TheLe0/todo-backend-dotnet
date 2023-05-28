@@ -21,12 +21,13 @@ public static class ServiceCollectionExtensions
 
         if (databaseType == DatabaseType.COSMOS_DB)
         {
-            var cosmosDbConfig = new CosmosDbConfigurations
+            var cosmosDbConfig = new CosmosDbConfiguration
             {
                 PartitionKey = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbPartitionKey),
                 EndpointUri = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbEndpointUri),
                 PrimaryKey = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbPrimaryKey),
-                DatabaseId = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbDatabaseId)
+                DatabaseId = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbDatabaseId),
+                ApplicationName = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbApplicationName)
             };
 
             databaseConfig = new DatabaseConfiguration(databaseType, cosmosDbConfig);

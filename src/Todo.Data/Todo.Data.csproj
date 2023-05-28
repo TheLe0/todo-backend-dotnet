@@ -9,13 +9,11 @@
     <None Remove="Repository\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repository\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Todo.Domain\Todo.Domain.csproj" />
     <ProjectReference Include="..\Todo.Configuration\Todo.Configuration.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.34.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
   </ItemGroup>
 </Project>

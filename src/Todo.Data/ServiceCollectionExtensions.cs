@@ -24,6 +24,9 @@ public static class ServiceCollectionExtensions
             case DatabaseType.IN_MEMORY:
                 services.AddInMemory();
                 break;
+            case DatabaseType.COSMOS_DB:
+                services.AddCosmosDb();
+                break;
         }
 
 
@@ -33,6 +36,14 @@ public static class ServiceCollectionExtensions
     private static IServiceCollection AddInMemory(this IServiceCollection services)
     {
         services.AddSingleton<ITaskRepository, TakInMemoryRepository>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddCosmosDb(this IServiceCollection services)
+    {
+        services.AddTransient<ITaskRepository>(x =>
+            new TaskCosmosDbRepository(x.GetRequiredService<IDatabaseConfiguration>()));
 
         return services;
     }

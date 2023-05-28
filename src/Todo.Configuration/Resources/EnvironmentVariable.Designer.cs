@@ -61,6 +61,15 @@ namespace Todo.Configuration.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to COSMOS_DB_APPLICATION_NAME.
+        /// </summary>
+        internal static string CosmosDbApplicationName {
+            get {
+                return ResourceManager.GetString("CosmosDbApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to COSMOS_DB_DATABASE_ID.
         /// </summary>
         internal static string CosmosDbDatabaseId {

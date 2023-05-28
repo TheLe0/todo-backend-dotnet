@@ -3,7 +3,7 @@
 public class DatabaseConfiguration : IDatabaseConfiguration
 {
 	private readonly DatabaseType _type;
-	private readonly CosmosDbConfigurations _cosmosConfigurations;
+	private readonly CosmosDbConfiguration _cosmosConfigurations;
 
 	public DatabaseConfiguration(DatabaseType type)
 	{
@@ -12,7 +12,7 @@ public class DatabaseConfiguration : IDatabaseConfiguration
 
     }
 
-    public DatabaseConfiguration(DatabaseType type, CosmosDbConfigurations cosmosConfig)
+    public DatabaseConfiguration(DatabaseType type, CosmosDbConfiguration cosmosConfig)
     {
         _type = type;
         _cosmosConfigurations = cosmosConfig;
@@ -24,7 +24,7 @@ public class DatabaseConfiguration : IDatabaseConfiguration
 		return _type;
 	}
 
-	public CosmosDbConfigurations GetCosmosDbConfigurations()
+	public CosmosDbConfiguration GetCosmosDbConfigurations()
 	{
 		return _cosmosConfigurations;
 	}
