@@ -2,6 +2,7 @@
 
 public enum DatabaseType
 {
-    IN_MEMORY = 1
+    IN_MEMORY = 1,
+    COSMOS_DB = 2
 }
 

@@ -1,29 +1,41 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Todo.Configuration.Resources;
 
-namespace Todo.Configuration
+namespace Todo.Configuration;
+
+public static class ServiceCollectionExtensions
 {
-	public static class ServiceCollectionExtensions
-	{
-        public static IServiceCollection AddConfiguration(this IServiceCollection services)
-        {
-            services.AddDatabaseConfiguration();
+    public static IServiceCollection AddConfiguration(this IServiceCollection services)
+    {
+        services.AddDatabaseConfiguration();
 
-            return services;
+        return services;
+    }
+
+    public static IServiceCollection AddDatabaseConfiguration(this IServiceCollection services)
+    {
+        var databaseType = (DatabaseType)
+            int.Parse(Environment.GetEnvironmentVariable(EnvironmentVariable.DatabaseType));
+
+        var databaseConfig = new DatabaseConfiguration(databaseType);
+
+        if (databaseType == DatabaseType.COSMOS_DB)
+        {
+            var cosmosDbConfig = new CosmosDbConfiguration
+            {
+                PartitionKey = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbPartitionKey),
+                EndpointUri = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbEndpointUri),
+                PrimaryKey = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbPrimaryKey),
+                DatabaseId = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbDatabaseId),
+                ApplicationName = Environment.GetEnvironmentVariable(EnvironmentVariable.CosmosDbApplicationName)
+            };
+
+            databaseConfig = new DatabaseConfiguration(databaseType, cosmosDbConfig);
         }
 
+        services.AddSingleton<IDatabaseConfiguration>(X => databaseConfig);
 
-        public static IServiceCollection AddDatabaseConfiguration(this IServiceCollection services)
-        {
-            var databaseType = (DatabaseType)
-                int.Parse(System.Environment.GetEnvironmentVariable("DATABASE_TYPE"));
-
-            services.AddSingleton<IDatabaseConfiguration>(X =>
-                new DatabaseConfiguration(databaseType)
-            );
-
-            return services;
-        }
+        return services;
     }
 }
 
